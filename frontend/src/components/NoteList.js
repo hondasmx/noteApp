@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {formatDate} from "../Utils";
 
 export const API_URL = "http://localhost:8080/api/";
@@ -34,8 +34,9 @@ export class NoteList extends Component {
 
     noteItem(note) {
         const creationDate = formatDate(note.creationDate);
+        const noteId = note.id;
         return <tr>
-            <td>{creationDate}</td>
+            <td>{creationDate} <NavLink className="badge badge-secondary" to={"/showNote/" + noteId}>View</NavLink></td>
             <td>{note.priority}</td>
             <td>{note.text}</td>
             <td>
@@ -115,8 +116,8 @@ export class NoteList extends Component {
         return <div>
             <h2>Note list</h2>
             <div className="table-responsive">
-                <table className="table table-striped table-sm">
-                    <thead>
+                <table className="table table-striped table-hover">
+                    <thead className="thead-dark">
                     <tr>
                         <th>Creation date</th>
                         <th>Priority</th>
@@ -159,7 +160,6 @@ export class NoteList extends Component {
                 t.priority = note.priority;
                 t.text = note.text;
                 t.creationDate = note.creationDate;
-                console.log(t);
                 this.setState(() => ({
                     notes: notes
                 }))

@@ -16,7 +16,9 @@ export class AddNote extends Component {
         axios.post(API_URL + NOTE, {
             priority: note.priority,
             text: note.text
-        }).then(() => {
+        }).then((response) => {
+            if (!response.data) return;
+
             this.setState(() => ({
                 redirect: true
             }));

@@ -5,11 +5,10 @@ import {formatDate} from "../Utils";
 
 export class ShowNote extends Component {
 
-    noteId = this.props.match.params.number;
 
     getNote() {
 
-        axios.get(API_URL + NOTE + "/" + this.noteId)
+        axios.get(API_URL + NOTE + "/" + this.state.noteId)
             .then((response) => {
                 this.setState(() => ({
                     note: response.data
@@ -20,16 +19,15 @@ export class ShowNote extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {note: undefined};
+        const noteId = this.props.match.params.number;
+        this.state = {note: undefined, noteId: noteId};
         this.getNote();
     }
 
     render() {
         const note = this.state.note;
         if (!note) return (
-            <div>
-                Note with id: {this.noteId} was not found!
-            </div>
+            this.errorPage()
         );
 
         const creationDate = formatDate(note.creationDate);
@@ -41,5 +39,11 @@ export class ShowNote extends Component {
                 <h3>Text: </h3> {text}
             </div>
         )
+    }
+
+    errorPage() {
+        return <div>
+            Note with id: {this.state.noteId} was not found!
+        </div>;
     }
 }
