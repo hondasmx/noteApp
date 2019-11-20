@@ -6,10 +6,16 @@ export class NotFound extends Component {
     render() {
         return (
             <div>
-                You are lost, buddy!
                 <br/>
                 <br/>
-                <Link to="/">Back</Link>
+                <ul className="nav flex-column justify-content-center">
+                    <li className="nav-item">
+                        You are lost, buddy! That's a 404 page
+                    </li>
+                    <li className="nav-item">
+                        <Link to='/'>Main page</Link>
+                    </li>
+                </ul>
             </div>
         )
     }

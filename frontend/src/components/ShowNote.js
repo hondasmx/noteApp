@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from "axios";
 import {API_URL, NOTE} from "./NoteList";
 import {formatDate} from "../Utils";
+import {Link} from "react-router-dom";
 
 export class ShowNote extends Component {
 
@@ -34,10 +35,18 @@ export class ShowNote extends Component {
 
         return (
             <div>
+                <br/>
+                <br/>
                 <h3>Creation date: </h3> {creationDate}
-                <h3>Priority</h3> {priority}
+                <h3>Priority: </h3> {priority}
                 <h3>Text: </h3> {text}
+                <br/>
 
+                <ul className="nav nav-pills justify-content-center">
+                    <li className="nav-item">
+                        <Link className="nav-link active" to='/'>Main page</Link>
+                    </li>
+                </ul>
             </div>
         )
     }
