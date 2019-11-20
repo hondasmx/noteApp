@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.artyg</groupId>
-    <artifactId>todoapp</artifactId>
+    <artifactId>noteapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>todoapp</name>
+    <name>noteapp</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

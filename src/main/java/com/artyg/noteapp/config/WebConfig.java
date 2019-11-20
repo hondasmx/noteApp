@@ -1,4 +1,4 @@
-package com.artyg.todoapp.config;
+package com.artyg.noteapp.config;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(@NotNull CorsRegistry registry) {
-        registry.addMapping("/api/todo/**").allowedOrigins(Globals.FRONTEND_URL).allowedMethods("*");
-        registry.addMapping("/api/todo").allowedOrigins(Globals.FRONTEND_URL);
-        registry.addMapping("/api/todos").allowedOrigins(Globals.FRONTEND_URL);
+        registry.addMapping("/api/note/**").allowedOrigins(Globals.FRONTEND_URL).allowedMethods("*");
+        registry.addMapping("/api/note").allowedOrigins(Globals.FRONTEND_URL);
+        registry.addMapping("/api/notes").allowedOrigins(Globals.FRONTEND_URL);
     }
 }

@@ -1,12 +1,12 @@
-package com.artyg.todoapp;
+package com.artyg.noteapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TodoappApplication {
+public class NoteApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TodoappApplication.class, args);
+        SpringApplication.run(NoteApplication.class, args);
     }
 }

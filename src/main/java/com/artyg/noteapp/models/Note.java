@@ -1,4 +1,4 @@
-package com.artyg.todoapp.models;
+package com.artyg.noteapp.models;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,11 +7,11 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-import static com.artyg.todoapp.config.Globals.DEFAULT_PRIORITY;
+import static com.artyg.noteapp.config.Globals.DEFAULT_PRIORITY;
 
 @Entity
-@Table(name = "todo")
-public class Todo {
+@Table(name = "note")
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Todo {
     private String priority;
 
 
-    public Todo() {
+    public Note() {
         priority = DEFAULT_PRIORITY;
     }
 

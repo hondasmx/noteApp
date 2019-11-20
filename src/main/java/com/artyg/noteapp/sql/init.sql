@@ -1,4 +1,4 @@
-drop table if exists todo;
+drop table if exists note;
 drop type if exists priority;
 
 CREATE DOMAIN priority AS TEXT
@@ -8,7 +8,7 @@ CREATE DOMAIN priority AS TEXT
             OR VALUE = 'low'
         );
 
-create table if not exists todo
+create table if not exists note
 (
     id            SERIAL primary key,
     text          varchar(128) default null,
@@ -16,5 +16,5 @@ create table if not exists todo
     priority      priority default 'low'
 );
 
-insert into todo (text, priority) values ('first todo', 'low');
-insert into todo (text, priority) values ('second todo', 'high');
+insert into note (text, priority) values ('Enjoy the app', 'high');
+insert into note (text, priority) values ('Hire me', 'high');

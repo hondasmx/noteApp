@@ -1,6 +1,6 @@
-package com.artyg.todoapp.dao;
+package com.artyg.noteapp.dao;
 
-import com.artyg.todoapp.models.Todo;
+import com.artyg.noteapp.models.Note;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.jetbrains.annotations.NotNull;
@@ -9,46 +9,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 
 
 @Repository
-public class TodoDAOHibernateImpl implements TodoDAO {
+public class NoteDAOHibernateImpl implements NoteDAO {
 
     @NotNull private EntityManager entityManager;
 
     @Autowired
-    public TodoDAOHibernateImpl(@NotNull EntityManager entityManager) {
+    public NoteDAOHibernateImpl(@NotNull EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @NotNull
     @Override
-    public List<Todo> findAll() {
+    public List<Note> findAll() {
         Session currentSession = entityManager.unwrap(Session.class);
-        Query<Todo> query = currentSession.createQuery("from Todo", Todo.class);
+        Query<Note> query = currentSession.createQuery("from Note order by creationDate desc", Note.class);
         return query.getResultList();
     }
 
     @Nullable
     @Override
-    public Todo findById(int id) {
+    public Note findById(int id) {
         Session currentSession = entityManager.unwrap(Session.class);
-        return currentSession.get(Todo.class, id);
+        return currentSession.get(Note.class, id);
     }
 
     @Override
-    public void save(@NotNull Todo todo) {
+    public void save(@NotNull Note note) {
         Session currentSession = entityManager.unwrap(Session.class);
-        currentSession.saveOrUpdate(todo);
+        currentSession.saveOrUpdate(note);
     }
 
     @Override
-    public void deleteById(int todoId) {
+    public void deleteById(int noteId) {
         Session currentSession = entityManager.unwrap(Session.class);
-        Query query = currentSession.createQuery("delete Todo where id = :todoId");
-        query.setParameter("todoId", todoId);
+        Query query = currentSession.createQuery("delete Note where id = :noteId");
+        query.setParameter("noteId", noteId);
         query.executeUpdate();
     }
 }

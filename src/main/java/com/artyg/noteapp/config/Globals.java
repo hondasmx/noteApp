@@ -1,4 +1,4 @@
-package com.artyg.todoapp.config;
+package com.artyg.noteapp.config;
 
 import org.jetbrains.annotations.NotNull;
 
