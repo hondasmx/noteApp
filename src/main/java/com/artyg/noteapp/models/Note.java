@@ -4,14 +4,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
-
 import java.util.Date;
-
-import static com.artyg.noteapp.config.Globals.DEFAULT_PRIORITY;
 
 @Entity
 @Table(name = "note")
 public class Note {
+
+    @NotNull
+    private static String DEFAULT_PRIORITY = "low";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

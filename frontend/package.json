@@ -11,6 +11,7 @@
     "react-router-dom": "^5.1.2"
   },
   "scripts": {
+    "install_and_start": "npm install & npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
