@@ -24,7 +24,8 @@ export class NoteList extends Component {
                     }
                 );
                 this.setState(() => ({
-                    notes: notes
+                    notes: notes,
+                    originalNotes: notes
                 }));
             })
             .catch(error => {
@@ -114,25 +115,49 @@ export class NoteList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {notes: []};
+        this.state = {notes: [], ignoreCase: false};
         this.getNotes();
     }
+
+    filterNotes(event) {
+        const originalNotes = this.state.originalNotes;
+        const value = event.target.value.toString().toLowerCase();
+        console.log(originalNotes);
+        if (!value || value === "") {
+            this.setState({
+                notes: originalNotes
+            });
+            return;
+        }
+        const foundNotes = originalNotes.filter(note => note.text.toLowerCase().includes(value));
+        this.setState({
+            notes: foundNotes
+        })
+    }
+
 
     render() {
         const notes = this.state.notes.map(note => {
             return note.isEdited ? this.editedNoteItem(note) : this.noteItem(note);
         });
         return <div>
-            <h2>Note list</h2>
+            <br/>
+            <br/>
+            <div className="form-group">
+
+                <input type="text"
+                       className="form-control"
+                       id="searchInput"
+                       onChange={event => this.filterNotes(event)} placeholder="Type here to search"/>
+            </div>
+
             <div className="table-responsive">
                 <table className="table table-striped table-hover">
                     <thead className="thead-dark">
                     <tr>
                         <th>Creation date</th>
                         <th>Priority</th>
-                        <th>Text</th>
-                        <th/>
-                        <th/>
+                        <th colSpan="3">Text</th>
                     </tr>
                     </thead>
                     <tbody>
