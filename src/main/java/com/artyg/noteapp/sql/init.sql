@@ -11,10 +11,12 @@ CREATE DOMAIN priority AS TEXT
 create table if not exists note
 (
     id            SERIAL primary key,
-    text          varchar(128) default null,
-    creation_date varchar(128) default null,
+    text          text     default null CHECK (char_length(text) <= 500),
+    creation_date text     default null CHECK (char_length(creation_date) <= 30),
     priority      priority default 'low'
 );
 
-insert into note (text, priority) values ('Enjoy the app', 'high');
-insert into note (text, priority) values ('Hire me', 'high');
+insert into note (creation_date, text, priority)
+values ('2019-11-20 10:00:00.000+07', 'Enjoy the app', 'high');
+insert into note (creation_date, text, priority)
+values ('2019-11-20 10:00:00.000+07', 'Hire me', 'high');
