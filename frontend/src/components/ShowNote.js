@@ -5,9 +5,7 @@ import {formatDate} from "../Utils";
 
 export class ShowNote extends Component {
 
-
     getNote() {
-
         axios.get(API_URL + NOTE + "/" + this.state.noteId)
             .then((response) => {
                 this.setState(() => ({
@@ -32,11 +30,14 @@ export class ShowNote extends Component {
 
         const creationDate = formatDate(note.creationDate);
         const text = note.text;
+        const priority = note.priority;
 
         return (
             <div>
                 <h3>Creation date: </h3> {creationDate}
+                <h3>Priority</h3> {priority}
                 <h3>Text: </h3> {text}
+
             </div>
         )
     }

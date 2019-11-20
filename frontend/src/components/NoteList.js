@@ -38,7 +38,7 @@ export class NoteList extends Component {
         return <tr>
             <td>{creationDate} <NavLink className="badge badge-secondary" to={"/showNote/" + noteId}>View</NavLink></td>
             <td>{note.priority}</td>
-            <td>{note.text}</td>
+            <td className="word-break">{note.text}</td>
             <td>
                 <button className="btn btn-secondary" onClick={this.toggleEditMode.bind(this, note.id)}>Edit</button>
             </td>
@@ -46,6 +46,13 @@ export class NoteList extends Component {
                 <button className="btn btn-danger" onClick={this.deleteNote.bind(this, note.id)}>Delete</button>
             </td>
         </tr>;
+    }
+
+    countChars(event) {
+        const value = event.target.value;
+        this.setState({
+            chars: value.length
+        });
     }
 
     editedNoteItem(note) {
@@ -77,9 +84,11 @@ export class NoteList extends Component {
                     <textarea className="form-control"
                               id="exampleFormControlTextarea"
                               rows="3"
-                              onChange={(event) => noteObj.text = event.target.value}
+                              onKeyUp={(event) => noteObj.text = event.target.value}
+                              onChange={this.countChars.bind(this)}
                               defaultValue={note.text}
                     />
+
                 </div>
             </td>
             <td>

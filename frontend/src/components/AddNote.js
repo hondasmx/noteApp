@@ -9,7 +9,7 @@ export class AddNote extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {redirect: false}
+        this.state = {redirect: false, chars: 0}
     }
 
     addNote(note) {
@@ -30,6 +30,13 @@ export class AddNote extends Component {
         return (
             this.state.redirect ? <Redirect to="/"/> : this.addNotePage()
         );
+    }
+
+    countChars(event) {
+        const value = event.target.value;
+        this.setState({
+            chars: value.length
+        });
     }
 
     addNotePage() {
@@ -54,7 +61,11 @@ export class AddNote extends Component {
                     <textarea className="form-control"
                               id="exampleFormControlTextarea"
                               rows="3"
-                              onChange={event => noteObj.text = event.target.value}/>
+                              onKeyUp={event => noteObj.text = event.target.value}
+                              onChange={this.countChars.bind(this)}/>
+                    <div>
+                        Characters {this.state.chars} / 500.
+                    </div>
                 </div>
                 <div>
                     <ul className="nav nav-pills">
@@ -65,7 +76,6 @@ export class AddNote extends Component {
                         </li>
                         <li className="nav-item mr-2">
                             <Link className="nav-link btn-danger" to='/'>Cancel</Link>
-
                         </li>
                     </ul>
                 </div>

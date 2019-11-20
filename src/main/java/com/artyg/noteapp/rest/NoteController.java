@@ -40,16 +40,26 @@ public class NoteController {
     }
 
     @PostMapping("note")
-    public long saveNote(@RequestBody Note note) {
+    @Nullable
+    public Note saveNote(@NotNull @RequestBody Note note) {
         note.setId(0);
         note.setCreationDate(new Date());
-        noteService.save(note);
-        return note.getId();
+        try {
+            noteService.save(note);
+        } catch (Exception e) {
+            return null;
+        }
+        return note;
     }
 
     @PutMapping("note")
+    @Nullable
     public Note updateNote(@RequestBody Note note) {
-        noteService.save(note);
+        try {
+            noteService.save(note);
+        } catch (Exception e) {
+            return null;
+        }
         return note;
     }
 

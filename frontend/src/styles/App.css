@@ -20,3 +20,14 @@
 .App-link {
   color: #09d3ac;
 }
+
+.error-string {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.word-break {
+  word-break: break-all;
+}
