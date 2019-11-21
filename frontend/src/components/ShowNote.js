@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import axios from "axios";
-import {API_URL, NOTE} from "./NoteList";
+import {API_URL} from "./NoteList";
 import {formatDate} from "../Utils";
 import {Link} from "react-router-dom";
 
 export class ShowNote extends Component {
 
     getNote() {
-        axios.get(API_URL + NOTE + "/" + this.state.noteId)
+        axios.get(API_URL + "/" + this.state.noteId)
             .then((response) => {
                 this.setState(() => ({
                     note: response.data

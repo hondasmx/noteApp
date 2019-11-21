@@ -27,7 +27,7 @@ public class NoteController {
         return noteService.findAll();
     }
 
-    @GetMapping("note/{noteId}")
+    @GetMapping("notes/{noteId}")
     @Nullable
     public Note getNote(@PathVariable String noteId) {
         try {
@@ -38,7 +38,7 @@ public class NoteController {
         }
     }
 
-    @PostMapping("note")
+    @PostMapping("notes")
     @Nullable
     public Note saveNote(@NotNull @RequestBody Note note) {
         note.setId(0);
@@ -51,7 +51,7 @@ public class NoteController {
         return note;
     }
 
-    @PutMapping("note")
+    @PutMapping("notes")
     @Nullable
     public Note updateNote(@RequestBody Note note) {
         try {
@@ -62,7 +62,7 @@ public class NoteController {
         return note;
     }
 
-    @DeleteMapping("note/{noteId}")
+    @DeleteMapping("notes/{noteId}")
     public void deleteNote(@PathVariable String noteId) {
         try {
             int id = Integer.parseInt(noteId);

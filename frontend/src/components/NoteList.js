@@ -3,14 +3,12 @@ import axios from "axios";
 import {Link, NavLink} from 'react-router-dom'
 import {formatDate} from "../Utils";
 
-export const API_URL = "http://localhost:8080/api/";
-export const GET_NOTES = "notes";
-export const NOTE = "note";
+export const API_URL = "http://localhost:8080/api/notes";
 
 export class NoteList extends Component {
 
     getNotes() {
-        axios.get(API_URL + GET_NOTES)
+        axios.get(API_URL)
             .then(response => {
                 const data = response.data;
                 const notes = data.map(el => {
@@ -175,14 +173,13 @@ export class NoteList extends Component {
 
 
     saveNote(note) {
-        console.log(note);
         let noteObj = {
             id: note.id,
             priority: note.priority,
             creationDate: note.creationDate,
             text: note.text
         };
-        axios.put(API_URL + NOTE, noteObj)
+        axios.put(API_URL, noteObj)
             .then(() => {
                 this.toggleEditMode(note.id)
             })
@@ -202,7 +199,8 @@ export class NoteList extends Component {
     }
 
     deleteNote(noteId) {
-        axios.delete(API_URL + NOTE + "/" + noteId)
+        console.log(noteId)
+        axios.delete(API_URL + "/" + noteId)
             .then(() => {
                 let notes = this.state.notes.slice(0);
                 notes = notes.filter(note => note.id !== noteId);

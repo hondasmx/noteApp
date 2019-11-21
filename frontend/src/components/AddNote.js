@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link, Redirect} from "react-router-dom";
 import axios from "axios";
-import {API_URL, NOTE} from "./NoteList";
+import {API_URL} from "./NoteList";
 
 
 export class AddNote extends Component {
@@ -13,7 +13,7 @@ export class AddNote extends Component {
     }
 
     addNote(note) {
-        axios.post(API_URL + NOTE, {
+        axios.post(API_URL, {
             priority: note.priority,
             text: note.text
         }).then((response) => {
