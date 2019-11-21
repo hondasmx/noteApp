@@ -10,9 +10,6 @@ import java.util.Date;
 @Table(name = "note")
 public class Note {
 
-    @NotNull
-    private static String DEFAULT_PRIORITY = "low";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,7 +29,7 @@ public class Note {
 
 
     public Note() {
-        priority = DEFAULT_PRIORITY;
+        priority = "low";
     }
 
     @NotNull
@@ -62,7 +59,7 @@ public class Note {
         this.creationDate = creationDate;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
