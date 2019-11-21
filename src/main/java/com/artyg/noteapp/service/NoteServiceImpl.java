@@ -2,12 +2,17 @@ package com.artyg.noteapp.service;
 
 import com.artyg.noteapp.dao.NoteRepository;
 import com.artyg.noteapp.models.Note;
+import com.artyg.noteapp.rest.NoteNotFoundException;
+import com.artyg.noteapp.rest.NoteResponseError;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +39,11 @@ public class NoteServiceImpl implements NoteService {
     public Note findById(int id) {
         Optional<Note> result = noteRepository.findById(id);
 
-        Note note = null;
+        Note note;
         if (result.isPresent()) {
             note = result.get();
         } else {
-            throw new RuntimeException("Did not find note id: " + id);
+            throw new NoteNotFoundException("Did not find note id: " + id);
         }
         return note;
     }
@@ -47,7 +52,6 @@ public class NoteServiceImpl implements NoteService {
     public void save(@NotNull Note note) {
         noteRepository.save(note);
     }
-
 
     @Override
     public void deleteById(int id) {

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import {API_URL} from "./NoteList";
-import {formatDate} from "../Utils";
+import {formatDate, isNumber} from "../Utils";
 import {Link} from "react-router-dom";
 
 export class ShowNote extends Component {
@@ -52,8 +52,22 @@ export class ShowNote extends Component {
     }
 
     errorPage() {
+        const noteId = this.state.noteId;
+        console.log(parseInt(noteId));
+
+        const message = isNumber(noteId) ? "Note with id:" + noteId + " was not found!" : "Stop breaking the app with invalid IDs";
         return <div>
-            Note with id: {this.state.noteId} was not found!
+            <br/>
+            <br/>
+
+            {message}
+            <ul className="nav nav-pills justify-content-center">
+                <li className="nav-item">
+                    <Link className="nav-link active" to='/'>Main page</Link>
+                </li>
+            </ul>
         </div>;
     }
+
+
 }

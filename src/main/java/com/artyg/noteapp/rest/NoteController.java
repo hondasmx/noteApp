@@ -37,34 +37,20 @@ public class NoteController {
     @PostMapping("notes")
     @Nullable
     public Note saveNote(@NotNull @RequestBody Note note) {
-        note.setId(0);
         note.setCreationDate(new Date());
-        try {
-            noteService.save(note);
-        } catch (Exception e) {
-            return null;
-        }
+        noteService.save(note);
         return note;
     }
 
     @PutMapping("notes")
     @Nullable
     public Note updateNote(@RequestBody Note note) {
-        try {
-            noteService.save(note);
-        } catch (Exception e) {
-            return null;
-        }
+        noteService.save(note);
         return note;
     }
 
     @DeleteMapping("notes/{noteId}")
-    public void deleteNote(@PathVariable String noteId) {
-        try {
-            int id = Integer.parseInt(noteId);
-            noteService.deleteById(id);
-        } catch (NumberFormatException e) {
-            //nothing
-        }
+    public void deleteNote(@PathVariable int noteId) {
+        noteService.deleteById(noteId);
     }
 }
