@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class NoteServiceImpl implements NoteService {
     @NotNull
     @Override
     public List<Note> findAll() {
-        return noteRepository.findAll();
+        return noteRepository.findAll(Sort.by("creationDate").descending());
     }
 
     @Override
