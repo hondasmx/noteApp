@@ -14,7 +14,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class NoteController {
 
-    @NotNull private final NoteService noteService;
+    @NotNull
+    private final NoteService noteService;
 
     @Contract(pure = true)
     public NoteController(@NotNull NoteService noteService) {
@@ -29,13 +30,8 @@ public class NoteController {
 
     @GetMapping("notes/{noteId}")
     @Nullable
-    public Note getNote(@PathVariable String noteId) {
-        try {
-            int id = Integer.parseInt(noteId);
-            return noteService.findById(id);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Note getNote(@PathVariable int noteId) {
+        return noteService.findById(noteId);
     }
 
     @PostMapping("notes")
