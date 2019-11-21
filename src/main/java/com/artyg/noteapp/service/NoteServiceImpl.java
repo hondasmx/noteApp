@@ -2,8 +2,10 @@ package com.artyg.noteapp.service;
 
 import com.artyg.noteapp.dao.NoteDAO;
 import com.artyg.noteapp.models.Note;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,6 +16,8 @@ public class NoteServiceImpl implements NoteService {
 
     private final NoteDAO noteDAO;
 
+    @Contract(pure = true)
+    @Autowired
     public NoteServiceImpl(NoteDAO noteDAO) {
         this.noteDAO = noteDAO;
     }
