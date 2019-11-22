@@ -120,7 +120,6 @@ export class NoteList extends Component {
     filterNotes(event) {
         const originalNotes = this.state.originalNotes;
         const value = event.target.value.toString().toLowerCase();
-        console.log(originalNotes);
         if (!value || value === "") {
             this.setState({
                 notes: originalNotes
