@@ -3,16 +3,12 @@ package com.artyg.noteapp.service;
 import com.artyg.noteapp.dao.NoteRepository;
 import com.artyg.noteapp.models.Note;
 import com.artyg.noteapp.rest.NoteNotFoundException;
-import com.artyg.noteapp.rest.NoteResponseError;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +16,12 @@ import java.util.Optional;
 @Service
 public class NoteServiceImpl implements NoteService {
 
-    private final NoteRepository noteRepository;
+    @NotNull
+    private NoteRepository noteRepository;
 
     @Contract(pure = true)
     @Autowired
-    public NoteServiceImpl(NoteRepository noteRepository) {
+    public NoteServiceImpl(@NotNull NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
 

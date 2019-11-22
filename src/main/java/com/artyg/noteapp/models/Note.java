@@ -30,6 +30,7 @@ public class Note {
 
     public Note() {
         priority = "low";
+        creationDate = new Date();
     }
 
     @NotNull

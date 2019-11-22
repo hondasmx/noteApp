@@ -10,3 +10,5 @@
 Run backend `mvn exec:java`
 
 Run frontend `mvn frontend:npm`
+
+TestSuite `com.artyg.noteapp.TestSuite`
